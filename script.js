@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (countdownSecsEl) {
         countdownSecsEl.textContent = 'Joining...';
       }
+      // Track Meta Pixel Lead event on auto-redirect
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', { content_name: 'Auto Telegram Redirect' });
+      }
       // Auto-redirect to Telegram channel
       window.location.href = telegramUrl;
     }
@@ -64,11 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  // 4. CTA Click Handler & Feedback
-  const ctaLinks = document.querySelectorAll('.cta-link');
+  // 4. CTA Click Handler & Meta Pixel Event Tracking
+  const ctaLinks = document.querySelectorAll('.cta-link, .btn-sticky');
   ctaLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-      // Direct opening to Telegram link
+      // Fire Meta Pixel Event for Telegram Join Lead
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', { content_name: 'Join Telegram Channel' });
+      }
       console.log('Redirecting to Telegram channel:', telegramUrl);
     });
   });
