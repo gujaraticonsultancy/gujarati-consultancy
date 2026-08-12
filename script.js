@@ -1,14 +1,14 @@
 /**
- * Stock Market Learning Academy - Client Script
+ * Gujarati Consultancy - Client Script
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const telegramUrl = 'https://t.me/+s6OOTB1_jXY2ZDY1';
-  
+
   // 1. Auto-Join Countdown Timer Logic
   const countdownSecsEl = document.getElementById('countdownSecs');
   const timerFillEl = document.getElementById('timerFill');
-  let timeLeft = 60; // 60 seconds
+  let timeLeft = 60;
   const totalTime = 60;
 
   const timerInterval = setInterval(() => {
@@ -41,12 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentCount = 5947;
 
   setInterval(() => {
-    // Slight random variation between -3 and +5 to make the live pill feel real
     const change = Math.floor(Math.random() * 9) - 3;
     currentCount += change;
     if (currentCount < 5800) currentCount = 5850;
     if (currentCount > 6200) currentCount = 6150;
-    
+
     if (tradersCountEl) {
       tradersCountEl.textContent = currentCount.toLocaleString('en-IN');
     }
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!stickyCtaBar || !mainCta) return;
 
     const mainCtaPosition = mainCta.getBoundingClientRect();
-    // Show sticky bar once user scrolls past the main CTA button
     if (mainCtaPosition.bottom < 0) {
       stickyCtaBar.classList.add('visible');
     } else {
@@ -72,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctaLinks = document.querySelectorAll('.cta-link, .btn-sticky');
   ctaLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-      // Fire Meta Pixel Event for Telegram Join Lead
       if (typeof window.fbq === 'function') {
         window.fbq('track', 'Lead', { content_name: 'Join Telegram Channel' });
       }
